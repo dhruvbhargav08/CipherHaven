@@ -5,15 +5,14 @@ import AffineCipher
 
 app = Flask(__name__)
 
-
 # RSA Route
-@app.route("/rsa", methods = ["GET"])
+@app.route("/rsa", methods=["GET"])
 def rsa():
     p = RSA.generate_large_prime()
     q = RSA.generate_large_prime()
     while p == q:
         q = RSA.generate_large_prime()
-    auto = request.args.get("auto", type = bool)  # Query parameter
+    auto = request.args.get("auto", type=bool)  # Query parameter
     if not auto:
         p = int(request.args.get("p"))
         q = int(request.args.get("q"))
@@ -40,9 +39,8 @@ def rsa():
     }
     return jsonify(response), 200
 
-
 # AES Route
-@app.route("/aes", methods = ["GET"])
+@app.route("/aes", methods=["GET"])
 def aes():
     key = request.args.get("key")  # Get the key
     message = request.args.get("plaintext")  # Get the message
@@ -62,9 +60,8 @@ def aes():
     }
     return jsonify(response), 200
 
-
 # AffineCipher Route
-@app.route("/affinecipher", methods = ["GET"])
+@app.route("/affinecipher", methods=["GET"])
 def affine_cipher():
     a, b = 5, 11
     plaintext = request.args.get("plaintext")  # Get the plaintext
@@ -82,11 +79,9 @@ def affine_cipher():
     }
     return jsonify(response), 200
 
-
 @app.route("/")
 def index():
     return render_template('index.html')
 
-
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)
