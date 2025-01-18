@@ -85,6 +85,7 @@ class AES:
                 "shift_row": shift_row_arr.tolist(),
                 "sub_bytes": sub_bytes_arr.tolist(),
                 "round_key": self.ROUNDKEY[i],
+                "mix_column": mix_col_arr.tolist() if i != self.ROUND else None,
                 "output": mix_col_arr.tolist() if i != 0 else add_round_arr.tolist(),
             })
 
@@ -142,15 +143,3 @@ class AES:
             "decryption_details": self.decryption_details
         }
 
-
-if __name__ == '__main__':
-
-    aes128 = AES()
-
-    # Define key and message
-
-    # Encrypt the message
-    encryption_result = aes128.encrypt(key, msg)
-    # Decrypt the message
-    ciphertext = encryption_result['encrypted']
-    decryption_result = aes128.decrypt(key, ciphertext)

@@ -9,27 +9,23 @@ def mod_inverse(a, m):
     return None
 
 
-# Affine cipher encryption (modified to handle all characters)
 def affine_encrypt(text, a, b):
-    m = 256  # Consider all ASCII characters
+    m = 256  # ASCII character set size
     encrypted_text = ""
     steps = []
     for char in text:
-        x = ord(char)  # Get the ASCII value of the character
-        encrypted_char = (a * x + b) % m  # Apply affine transformation
+        x = ord(char)  # Get ASCII value
+        encrypted_char = (a * x + b) % m  # Affine transformation
         encrypted_text += chr(encrypted_char)  # Convert back to character
         steps.append({
-            "char": char,
-            "x": x,
             "encrypted_value": encrypted_char,
-            "encrypted_char": encrypted_text[-1]  # Use repr to represent non-printable characters
+            "encrypted_char": encrypted_text[-1]
         })
     return encrypted_text, steps
 
 
-# Affine cipher decryption (modified to handle all characters)
 def affine_decrypt(text, a, b):
-    m = 256  # Consider all ASCII characters
+    m = 256  # ASCII character set size
     a_inv = mod_inverse(a, m)
     if a_inv is None:
         raise ValueError(f"No modular inverse exists for a = {a} and m = {m}")
@@ -37,14 +33,12 @@ def affine_decrypt(text, a, b):
     decrypted_text = ""
     steps = []
     for char in text:
-        y = ord(char)  # Get the ASCII value of the character
-        decrypted_char = (a_inv * (y - b)) % m  # Apply inverse affine transformation
+        y = ord(char)  # Get ASCII value
+        decrypted_char = (a_inv * (y - b)) % m  # Inverse affine transformation
         decrypted_text += chr(decrypted_char)  # Convert back to character
         steps.append({
-            "char": char,
-            "y": y,
             "decrypted_value": decrypted_char,
-            "decrypted_char": decrypted_text[-1] # Use repr to represent non-printable characters
+            "decrypted_char": decrypted_text[-1]
         })
     
     return decrypted_text, steps

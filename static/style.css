@@ -8,18 +8,24 @@ body {
     align-items: center;  /* Center windows horizontally */
     height: 100vh;
     justify-content: flex-start; /* Align at the top of the page */
+    background: linear-gradient(135deg, #6a1b9a, #8e24aa, #1976d2, #0d47a1); /* Purple to Blue gradient */
+    background-size: 400% 400%; /* Create a more fluid gradient transition */
+    animation: gradientAnimation 10s ease infinite; /* Add animation for smooth transition */
+    font-family: Arial, sans-serif; /* Optional: Set a default font */
 }
 
 .window {
-    width: 80%;  /* Make windows smaller to fit the screen */
+    width: 76%;  /* Make windows smaller to fit the screen */
     padding: 20px;
-    margin: 10px;
+    margin: 40px 10px 10px;
     background-color: #f0f0f0;
     border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px; /* Add rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Enhanced drop shadow */
     display: flex;
     flex-direction: column;
 }
+
 
 .button-container {
     margin-bottom: 20px;
@@ -33,17 +39,18 @@ body {
 }
 
 .button {
-    padding: 8px 16px;
-    margin: 5px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #8e24aa; /* A purple shade that matches the gradient */
+    color: white; /* White text for contrast */
+    padding: 10px 20px;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition on hover */
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: #1976d2; /* A blue shade that complements the gradient */
+    transform: scale(1.05); /* Slight zoom effect for a nice hover effect */
 }
 
 .content {
@@ -79,27 +86,49 @@ form input[type="text"] {
     padding: 6px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100%;
+    width: 95%;
     font-size: 14px; /* Smaller text */
 }
 
+/* Style for the submit button */
 form input[type="submit"] {
-    padding: 8px;
-    background-color: #4CAF50;
+    padding: 12px;
+    background-color: #8e24aa; /* A purple shade similar to the gradient */
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    width: 100%;
-    font-size: 14px; /* Smaller text */
+    width: 95%;
+    font-size: 20px; /* Smaller text */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
 }
 
+/* Hover effect for submit button */
 form input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #1976d2; /* A blue shade that complements the gradient */
+    transform: scale(1.01); /* Slight zoom effect */
+}
+
+/* Style for text input fields */
+input[type="text"] {
+    height: 30px;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Light border for text input fields */
+    width: 100%; /* Full width input */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+}
+
+/* Focus effect for text input fields */
+input[type="text"]:focus {
+    border-color: #8e24aa; /* Purple border on focus, matching the submit button */
+    outline: none; /* Remove default outline */
 }
 
 /* Reduce the height of input fields and buttons */
 input[type="text"], input[type="submit"] {
-    height: 30px;
+
     font-size: 14px;
 }
+

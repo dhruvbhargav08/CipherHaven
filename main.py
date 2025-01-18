@@ -40,6 +40,7 @@ def rsa():
     return jsonify(response), 200
 
 # AES Route
+# AES Route
 @app.route("/aes", methods=["GET"])
 def aes():
     key = request.args.get("key")  # Get the key
@@ -52,7 +53,9 @@ def aes():
         "key": key,
         "message": message,
         "ciphertext": ciphertext,
-        "decryption_result": decryption_result
+        "encryption_result": encryption_result['encryption_details'],
+        "decryption_result": decryption_result['decryption_details'],
+        "decrypted": decryption_result['decrypted'],
     }
     response = {
         "success": True,
@@ -64,7 +67,7 @@ def aes():
 @app.route("/affinecipher", methods=["GET"])
 def affine_cipher():
     a, b = 5, 11
-    plaintext = request.args.get("plaintext")  # Get the plaintext
+    plaintext = request.args.get("plaintext")
     encrypted_text, encryption_steps = AffineCipher.affine_encrypt(plaintext, a, b)
     decrypted_text, decryption_steps = AffineCipher.affine_decrypt(encrypted_text, a, b)
     data = {
