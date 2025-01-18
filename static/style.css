@@ -1,0 +1,105 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;  /* Stack windows vertically */
+    align-items: center;  /* Center windows horizontally */
+    height: 100vh;
+    justify-content: flex-start; /* Align at the top of the page */
+}
+
+.window {
+    width: 80%;  /* Make windows smaller to fit the screen */
+    padding: 20px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    margin-bottom: 20px;
+    display: flex;              /* Use flexbox to align buttons horizontally */
+    justify-content: space-evenly;  /* Distribute buttons evenly */
+    gap: 10px;                 /* Space between buttons */
+}
+
+.window h3 {
+    margin-top: 0;
+}
+
+.button {
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.content {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* Flexbox container to align Window 2 and Window 3 horizontally */
+.window-container {
+    display: flex;  /* Make both windows align horizontally */
+    justify-content: space-between; /* Space between Window 2 and Window 3 */
+    width: 80%; /* Set the container width */
+    gap: 10px;  /* Add some gap between the two windows */
+}
+
+#window2, #window3 {
+    width: 48%;  /* Each window will take up about half of the available space */
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  /* Space between form elements */
+    width: 100%;  /* Use 100% of the available width for form */
+    margin: 0 auto;  /* Center the form */
+}
+
+form input[type="text"] {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 14px; /* Smaller text */
+}
+
+form input[type="submit"] {
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 14px; /* Smaller text */
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Reduce the height of input fields and buttons */
+input[type="text"], input[type="submit"] {
+    height: 30px;
+    font-size: 14px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Windows Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script> <!-- Link to the external JavaScript file -->
+</head>
+<body>
+
+    <!-- Window 1: Contains 3 buttons -->
+    <div class="window">
+        <h3>Visualiser</h3>
+        <div class="button-container">
+            <button class="button" onclick="openWindowContent('button1')">RSA</button>
+            <button class="button" onclick="openWindowContent('button2')">AES</button>
+            <button class="button" onclick="openWindowContent('button3')">Affine Cipher</button>
+        </div>
+        <div class="content">
+        </div>
+    </div>
+
+    <!-- Container for Window 2 and Window 3 (Horizontal Layout) -->
+    <div class="window-container">
+        <!-- Window 2: Initially empty, will load form content dynamically -->
+        <div class="window" id="window2">
+            <h3>Encryption</h3>
+            <div class="content" id="window2-content">
+                <p>Select Algorithm.</p>
+            </div>
+        </div>
+
+        <!-- Window 3: Initially empty, will load form content dynamically -->
+        <div class="window" id="window3">
+            <h3>Decryption</h3>
+            <div class="content" id="window3-content">
+                <p>Select Algorithm</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

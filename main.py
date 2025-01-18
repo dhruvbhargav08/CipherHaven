@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import RSA
 import AES
 import AffineCipher
@@ -34,6 +34,7 @@ def rsa():
         "decrypted_text": decrypted_text,
         "plaintext": plaintext
     }
+    print(data)
     response = {
         "success": True,
         "data": data,
@@ -81,6 +82,11 @@ def affine_cipher():
         "data": data,
     }
     return jsonify(response), 200
+
+
+@app.route("/")
+def index():
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
