@@ -6,7 +6,7 @@ from Crypto.Util import number
 
 # Function to generate large prime numbers
 def generate_large_prime():
-    prime = number.getPrime(2048)
+    prime = number.getPrime(8)
     return prime
 
 

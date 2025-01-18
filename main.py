@@ -18,7 +18,7 @@ def rsa():
         p = int(request.args.get("p"))
         q = int(request.args.get("q"))
     public_key, private_key, n, phi, d, e = RSA.generate_keys(p, q)
-    plaintext = request.args.get("plaintext")  # Get plaintext from query params
+    plaintext = request.args.get("plaintext")
     ciphertext = RSA.encrypt(public_key, plaintext)
     decrypted_text = RSA.decrypt(private_key, ciphertext)
     data = {
@@ -34,7 +34,6 @@ def rsa():
         "decrypted_text": decrypted_text,
         "plaintext": plaintext
     }
-    print(data)
     response = {
         "success": True,
         "data": data,

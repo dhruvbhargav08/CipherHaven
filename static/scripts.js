@@ -59,21 +59,46 @@ function submitRSAForm(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Populate Window 2 with the RSA encryption results
             const rsaData = data.data;
+
+            // Display Encryption Results in Window 2
             document.getElementById('window2-content').innerHTML = `
                 <h4>Encryption Results</h4>
                 <p><strong>Public Key:</strong> ${rsaData.public_key}</p>
                 <p><strong>Private Key:</strong> ${rsaData.private_key}</p>
                 <p><strong>Ciphertext:</strong> ${rsaData.ciphertext}</p>
+
+                <h5>Character-by-Character Encryption</h5>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Plaintext Character</th>
+                            <th>Encrypted Ciphertext</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${displayCharacterCipher(plaintext, rsaData)}
+                    </tbody>
+                </table>
             `;
 
-            // Populate Window 3 with the RSA decryption results
+            // Display Decryption Results in Window 3
             document.getElementById('window3-content').innerHTML = `
                 <h4>Decryption Results</h4>
                 <p><strong>Decrypted Text:</strong> ${rsaData.decrypted_text}</p>
-                <p><strong>Public Key:</strong> ${rsaData.public_key}</p>
-                <p><strong>Private Key:</strong> ${rsaData.private_key}</p>
+
+                <h5>Character-by-Character Decryption</h5>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Ciphertext Character</th>
+                            <th>Decrypted Plaintext</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${displayDecryptedCharacter(rsaData.ciphertext, rsaData)}
+                    </tbody>
+                </table>
             `;
         } else {
             alert('Error: ' + data.message);
@@ -82,4 +107,44 @@ function submitRSAForm(event) {
     .catch(error => {
         console.error('Error:', error);
     });
+}
+
+// Helper function to display each character and its corresponding cipher text
+function displayCharacterCipher(plaintext, rsaData) {
+    let result = '';
+
+    // Iterate over each character of the plaintext and encrypt it
+    for (let i = 0; i < plaintext.length; i++) {
+        const char = plaintext[i];
+        const charCiphertext = rsaData.ciphertext[i] || '';  // Get encrypted text for the character
+
+        result += `
+            <tr>
+                <td>${char}</td>
+                <td>${charCiphertext}</td>
+            </tr>
+        `;
+    }
+
+    return result;
+}
+
+// Helper function to display each character of the ciphertext and its decrypted value
+function displayDecryptedCharacter(ciphertext, rsaData) {
+    let result = '';
+
+    // Iterate over each character of the ciphertext and decrypt it
+    for (let i = 0; i < ciphertext.length; i++) {
+        const cipherChar = ciphertext[i];
+        const decryptedChar = rsaData.decrypted_text[i] || '';  // Get decrypted text for the character
+
+        result += `
+            <tr>
+                <td>${cipherChar}</td>
+                <td>${decryptedChar}</td>
+            </tr>
+        `;
+    }
+
+    return result;
 }
